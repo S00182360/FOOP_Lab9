@@ -51,10 +51,12 @@ namespace FOOP_Lab9
             string title = tbx_Title.Text;
             string genre = tbx_Genre.Text;
             int rating = int.Parse(cbx_Rating.Text);
-
+            //Create Movie from boxes and create new list item
             Movie newMovie = new Movie(title, genre, rating);
-
             movieList.Add(newMovie);
+            //Clear Text Boxes
+            tbx_Title.Clear();
+            tbx_Genre.Clear();
 
         }
 
