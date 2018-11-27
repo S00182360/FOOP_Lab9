@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Newtonsoft.Json;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace FOOP_Lab9
 {
@@ -41,9 +43,9 @@ namespace FOOP_Lab9
             movieList.Add(M3);
 
             lbx_MovieList.ItemsSource = movieList;
-            
+            tbk_Featured.Text = M2.ToString();
 
-    }
+        }
 
         private void Btn_Add_Click(object sender, RoutedEventArgs e)
         {
@@ -67,6 +69,16 @@ namespace FOOP_Lab9
             if(lbx_MovieList != null)
             {
                 movieList.Remove(movieSelect);
+            }
+        }
+
+        private void Btn_Save_Click(object sender, RoutedEventArgs e)
+        {
+            string json = JsonConvert.SerializeObject(movieList, Formatting.Indented);
+
+            using (StreamWriter sw = new StreamWriter(@"c:\temp\movies.json"))
+            {
+                sw.Write(json);
             }
         }
     }
