@@ -24,6 +24,8 @@ namespace FOOP_Lab9
     public partial class MainWindow : Window
     {
         ObservableCollection<Movie> movieList = new ObservableCollection<Movie>();
+        ObservableCollection<Movie> filteredList = new ObservableCollection<Movie>();
+
 
         public MainWindow()
         {
@@ -80,6 +82,25 @@ namespace FOOP_Lab9
             {
                 sw.Write(json);
             }
+        }
+
+        private void Btn_Load_Click(object sender, RoutedEventArgs e)
+        {
+            using (StreamReader sr = new StreamReader(@"c:\temp\movies.json"))
+            {
+                string json = sr.ReadToEnd();
+                movieList = JsonConvert.DeserializeObject<ObservableCollection<Movie>>(json);
+            }
+
+            lbx_MovieList.ItemsSource = movieList;
+        }
+
+        private void Tbx_Filter_KeyUp(object sender, KeyEventArgs e)
+        {
+            filteredList.Clear();
+            string search = tbx_Filter.Text.ToLower();
+
+            lbx_MovieList.ItemsSource = movieList.Where(m => m.Title.ToLower().Contains(search));
         }
     }
 }

@@ -8,11 +8,11 @@
         Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <ListBox x:Name="lbx_MovieList" HorizontalAlignment="Left" Height="176" Margin="67,92,0,0" VerticalAlignment="Top" Width="565"/>
-        <Button x:Name="btn_Load" Content="Load" HorizontalAlignment="Left" Height="31" Margin="670,97,0,0" VerticalAlignment="Top" Width="99"/>
+        <Button x:Name="btn_Load" Content="Load" HorizontalAlignment="Left" Height="31" Margin="670,97,0,0" VerticalAlignment="Top" Width="99" Click="Btn_Load_Click"/>
         <Button x:Name="btn_Save" Content="Save" HorizontalAlignment="Left" Height="31" Margin="670,166,0,0" VerticalAlignment="Top" Width="99" Click="Btn_Save_Click"/>
         <Button x:Name="btn_Remove" Content="Remove" HorizontalAlignment="Left" Height="31" Margin="670,237,0,0" VerticalAlignment="Top" Width="99" Click="Btn_Remove_Click"/>
         <Button x:Name="btn_Add" Content="Add" HorizontalAlignment="Left" Height="32" Margin="670,341,0,0" VerticalAlignment="Top" Width="99" Click="Btn_Add_Click"/>
-        <TextBox x:Name="tbx_Filter" HorizontalAlignment="Left" Height="32" Margin="468,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="164"/>
+        <TextBox x:Name="tbx_Filter" HorizontalAlignment="Left" Height="32" Margin="468,30,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="164" KeyUp="Tbx_Filter_KeyUp"/>
         <TextBlock x:Name="tbk_Title" HorizontalAlignment="Left" Margin="67,30,0,0" TextWrapping="Wrap" Text="MOVIE LISTINGS" VerticalAlignment="Top" RenderTransformOrigin="-0.739,0.824" Height="45" Width="350" FontFamily="Rockwell Extra Bold" FontSize="36" TextDecorations="Underline"/>
         <TextBox x:Name="tbx_Title" HorizontalAlignment="Left" Height="32" Margin="67,341,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="164"/>
         <TextBox x:Name="tbx_Genre" HorizontalAlignment="Left" Height="32" Margin="253,341,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="164"/>
