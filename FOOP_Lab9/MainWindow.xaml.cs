@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using Microsoft.Win32;
 
 namespace FOOP_Lab9
 {
@@ -78,18 +79,45 @@ namespace FOOP_Lab9
         {
             string json = JsonConvert.SerializeObject(movieList, Formatting.Indented);
 
-            using (StreamWriter sw = new StreamWriter(@"c:\temp\movies.json"))
+            ////This code used for a defined path
+            //using (StreamWriter sw = new StreamWriter(@"c:\temp\movies.json"))
+            ////using (StreamWriter sw = new StreamWriter(@"\SAMsMovie.json"))
+            //{
+            //    sw.Write(json);
+            //}
+
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.DefaultExt = ".json";
+            Nullable<bool> result = sfd.ShowDialog();
+
+            if(result == true)
             {
-                sw.Write(json);
+                string filename = sfd.FileName;
+                //json = JsonConvert.SerializeObject(movieList, Formatting.Indented);
+                using (StreamWriter sw = new StreamWriter(filename))
+                {
+                    sw.Write(json);
+                }
             }
         }
 
         private void Btn_Load_Click(object sender, RoutedEventArgs e)
         {
-            using (StreamReader sr = new StreamReader(@"c:\temp\movies.json"))
+            //using (StreamReader sr = new StreamReader(@"c:\temp\movies.json"))
+            //{
+            //    string json = sr.ReadToEnd();
+            //    movieList = JsonConvert.DeserializeObject<ObservableCollection<Movie>>(json);
+            //}
+
+            OpenFileDialog ofd = new OpenFileDialog();
+            if(ofd.ShowDialog()== true)
             {
-                string json = sr.ReadToEnd();
-                movieList = JsonConvert.DeserializeObject<ObservableCollection<Movie>>(json);
+                string fileName = ofd.FileName;
+                using (StreamReader sr = new StreamReader(fileName))
+                {
+                    string json = sr.ReadToEnd();
+                    movieList = JsonConvert.DeserializeObject<ObservableCollection<Movie>>(json);
+                }
             }
 
             lbx_MovieList.ItemsSource = movieList;
